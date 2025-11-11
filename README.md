@@ -2,6 +2,16 @@
 
 Eine moderne, responsive Webanwendung zur Verwaltung und Organisation von Dokumenten (PDF, Bilder, Word, Text) für PC, Tablet und Mobilgeräte.
 
+## 🚀 Quick Start
+
+**Neu?** Starte in unter 10 Minuten mit Railway!
+
+👉 **[Quick Start Guide für Railway](QUICKSTART_RAILWAY.md)** - Deploy in 5 Schritten
+
+oder
+
+📖 **Lokale Entwicklung?** Siehe [Installation & Entwicklung](#installation--entwicklung) unten
+
 ## Features
 
 - 📁 **Ordnerverwaltung**: Organisieren Sie Ihre Dokumente in Ordnern
@@ -115,9 +125,18 @@ cd backend
 NODE_ENV=production npm start
 ```
 
-## Deployment auf Linux VPS mit Hestia
+## Deployment-Optionen
 
-Siehe [DEPLOYMENT.md](DEPLOYMENT.md) für detaillierte Anweisungen zur Installation auf einem Linux VPS mit Hestia Control Panel und MariaDB.
+### 🚀 Railway (Empfohlen für Testing)
+- **[Quick Start (5 Minuten)](QUICKSTART_RAILWAY.md)** - Schnellstart-Anleitung
+- **[Vollständige Railway-Anleitung](RAILWAY.md)** - Detaillierte Dokumentation
+
+### 🖥️ VPS mit Hestia (Production)
+- **[VPS Deployment-Guide](DEPLOYMENT.md)** - Detaillierte Anweisungen für Linux VPS mit Hestia Control Panel und MariaDB
+
+**Empfohlener Workflow:**
+1. Entwickeln und testen Sie auf Railway
+2. Wenn bereit, migrieren Sie zu Ihrem VPS für Production
 
 ## API Endpunkte
 

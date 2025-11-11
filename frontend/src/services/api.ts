@@ -1,8 +1,24 @@
 import axios from 'axios';
 import { Document, Folder, Tag } from '../types';
 
+// Determine API URL based on environment
+const getApiUrl = () => {
+  // If VITE_API_URL is set, use it
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL;
+  }
+
+  // In development, use Vite proxy
+  if (import.meta.env.DEV) {
+    return '/api';
+  }
+
+  // In production, use same origin
+  return '/api';
+};
+
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: getApiUrl(),
   headers: {
     'Content-Type': 'application/json',
   },
