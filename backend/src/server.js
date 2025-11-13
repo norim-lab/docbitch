@@ -5,6 +5,7 @@ const compression = require('compression');
 require('dotenv').config();
 
 const { testConnection } = require('./config/database');
+const { runMigrations } = require('./migrations/init');
 const documentRoutes = require('./routes/documentRoutes');
 const folderRoutes = require('./routes/folderRoutes');
 const tagRoutes = require('./routes/tagRoutes');
@@ -74,6 +75,12 @@ async function startServer() {
     if (!dbConnected) {
       console.error('Failed to connect to database. Please check your configuration.');
       process.exit(1);
+    }
+
+    // Run database migrations
+    const migrated = await runMigrations();
+    if (!migrated) {
+      console.error('Warning: Database migrations failed. Some features may not work.');
     }
 
     app.listen(PORT, () => {
