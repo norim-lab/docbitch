@@ -61,7 +61,9 @@ console.log('Database config:', {
 const pool = mariadb.createPool({
   ...dbConfig,
   connectionLimit: 5,
-  connectTimeout: 10000
+  connectTimeout: 10000,
+  ssl: { rejectUnauthorized: false }, // Required for Railway TCP Proxy
+  permitLocalInfile: true
 });
 
 // Test database connection
