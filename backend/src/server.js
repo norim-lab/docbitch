@@ -23,7 +23,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Static file serving for uploads
-app.use('/uploads', express.static('uploads'));
+const uploadDir = process.env.UPLOAD_DIR || './uploads';
+app.use('/uploads', express.static(uploadDir));
 
 // Routes
 app.use('/api/documents', documentRoutes);
@@ -59,6 +60,15 @@ app.use((req, res) => {
 // Start server
 async function startServer() {
   try {
+    // Ensure upload directory exists
+    const fs = require('fs').promises;
+    try {
+      await fs.mkdir(uploadDir, { recursive: true });
+      console.log(`✓ Upload directory ready: ${uploadDir}`);
+    } catch (err) {
+      console.error(`Warning: Could not create upload directory: ${err.message}`);
+    }
+
     // Test database connection
     const dbConnected = await testConnection();
     if (!dbConnected) {
